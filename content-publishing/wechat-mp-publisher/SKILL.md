@@ -47,7 +47,7 @@ Use this skill when the user wants a Markdown article published to 微信公众�
 ## Quick Start
 
 ```bash
-cd modules/content-publishing/wechat-mp-publisher
+cd content-publishing/wechat-mp-publisher
 python3 scripts/wechat_mp_publish.py \
   --article /abs/path/article.md \
   --author Dylan
@@ -56,7 +56,7 @@ python3 scripts/wechat_mp_publish.py \
 With Jimeng cover:
 
 ```bash
-cd modules/content-publishing/wechat-mp-publisher
+cd content-publishing/wechat-mp-publisher
 python3 scripts/wechat_mp_publish.py \
   --article /abs/path/article.md \
   --author Dylan \
@@ -68,7 +68,7 @@ python3 scripts/wechat_mp_publish.py \
 Debug rendered HTML without publishing:
 
 ```bash
-cd modules/content-publishing/wechat-mp-publisher
+cd content-publishing/wechat-mp-publisher
 python3 scripts/wechat_mp_publish.py \
   --article /abs/path/article.md \
   --dry-run \

@@ -37,7 +37,7 @@ Use this skill when the user needs an image generated through 火山引擎即梦
 ## Quick Start
 
 ```bash
-cd modules/image-generation/jimeng-volcengine
+cd image-generation/jimeng-volcengine
 python3 scripts/jimeng_image.py \
   --prompt "一张现代科技风微信公众号封面，蓝青色，抽象数据流和芯片元素" \
   --width 1536 \

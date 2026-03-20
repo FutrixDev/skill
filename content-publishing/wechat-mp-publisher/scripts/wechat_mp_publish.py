@@ -22,12 +22,12 @@ from markdown import Markdown
 from PIL import Image
 
 MODULE_DIR = Path(__file__).resolve().parents[1]
-REPO_ROOT = Path(__file__).resolve().parents[4]
+REPO_ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_CONFIG_PATH = Path(os.environ.get("WECHAT_MP_CONFIG", str(MODULE_DIR / "config.json")))
 DEFAULT_JIMENG_SCRIPT = Path(
     os.environ.get(
         "WECHAT_MP_JIMENG_SCRIPT",
-        str(REPO_ROOT / "modules/image-generation/jimeng-volcengine/scripts/jimeng_image.py"),
+        str(REPO_ROOT / "image-generation/jimeng-volcengine/scripts/jimeng_image.py"),
     )
 )
 DEFAULT_AUTHOR = "Dylan"

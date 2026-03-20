@@ -67,8 +67,8 @@ For body images, normalize the source before upload:
 
 In this repository, the default Jimeng 4.0 cover generator lives here:
 
-- `modules/image-generation/jimeng-volcengine/scripts/jimeng_image.py`
+- `image-generation/jimeng-volcengine/scripts/jimeng_image.py`
 
 The dedicated publish path for WeChat Markdown is:
 
-- `modules/content-publishing/wechat-mp-publisher/scripts/wechat_mp_publish.py`
+- `content-publishing/wechat-mp-publisher/scripts/wechat_mp_publish.py`

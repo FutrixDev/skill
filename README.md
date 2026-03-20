@@ -4,9 +4,9 @@
 
 当前模块：
 
-- `modules/content-publishing/wechat-mp-publisher`
+- `content-publishing/wechat-mp-publisher`
   微信公众号 Markdown 发布 skill。负责把 Markdown 渲染成适合微信公众号草稿接口的 HTML，上传正文插图、上传封面，并创建草稿。
-- `modules/image-generation/jimeng-volcengine`
+- `image-generation/jimeng-volcengine`
   火山引擎即梦 4.0 生图 skill。可作为公众号封面图生成器，也可单独用于文章配图。
 
 抽象出的关键经验：
@@ -19,8 +19,8 @@
 
 建议目录约定：
 
-- `modules/content-publishing/*`：内容生产与分发类 skill
-- `modules/image-generation/*`：图片与视觉素材生成类 skill
+- `content-publishing/*`：内容生产与分发类 skill
+- `image-generation/*`：图片与视觉素材生成类 skill
 
 这两个模块可以配合使用：
 
