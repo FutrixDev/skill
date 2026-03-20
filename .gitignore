@@ -1,0 +1,10 @@
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+modules/content-publishing/wechat-mp-publisher/config.json
+modules/image-generation/jimeng-volcengine/config.json
+
+modules/content-publishing/wechat-mp-publisher/generated-images/
+modules/image-generation/jimeng-volcengine/generated-images/
