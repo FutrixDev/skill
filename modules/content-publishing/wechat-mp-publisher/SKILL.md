@@ -29,6 +29,9 @@ Use this skill when the user wants a Markdown article published to 微信公众�
 
 - Do not send raw Markdown directly to WeChat APIs.
 - Render Markdown into WeChat-compatible HTML first.
+- Do not keep semantic `ol` / `ul` / `li` in the final draft HTML.
+  - WeChat editor reflows list tags unreliably and can inject phantom blank bullets or skipped numbers.
+  - Flatten lists into visible paragraph prefixes such as `1. ...` or `• ...` before draft creation.
 - Always set `阅读原文` to a canonical blog URL.
   - If the article path is under the configured blog posts directory, let `scripts/wechat_mp_publish.py` auto-derive `<site_base_url>/posts/<slug>.html`.
   - If the WeChat article is a derived summary (for example HN Top 5), pass `--source-url` explicitly and point it to the corresponding source blog post.
@@ -76,6 +79,7 @@ python3 scripts/wechat_mp_publish.py \
 
 - Prefer this skill over the legacy `wechat-publisher/publisher.py` when the task involves Markdown formatting or body illustrations.
 - When the article contains tables, convert them into readable bullet content instead of keeping `<table>` tags.
+- When the article contains ordered or unordered lists, keep the visible meaning but replace final HTML list tags with prefixed paragraphs.
 - When the article contains raw HTML blocks, do not trust them; keep only the safe WeChat HTML subset.
 - When image upload fails, report the exact failing file or URL and the WeChat API error.
 - Do not expose stored AppSecret or other credentials in chat output.

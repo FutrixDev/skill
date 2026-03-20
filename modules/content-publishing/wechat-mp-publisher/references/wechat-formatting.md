@@ -20,11 +20,13 @@ This reference captures the constraints that matter for this host's WeChat publi
   - `h1` `h2` `h3`
   - `p`
   - `blockquote`
-  - `ul` `ol` `li`
   - `pre` `code`
   - `img`
   - `hr`
   - `strong` `em` `a` `br`
+- Avoid semantic list tags in final WeChat output.
+  - Even when `ul` / `ol` / `li` look correct in intermediate HTML, the WeChat editor may reflow them into phantom blank bullets or skipped numbers.
+  - Flatten lists into plain paragraphs with visible prefixes such as `• ` or `1. `.
 - Avoid or flatten:
   - `table`
   - `style`
@@ -36,6 +38,7 @@ This reference captures the constraints that matter for this host's WeChat publi
 ## Formatting Implications
 
 - Tables in Markdown should be flattened into bullet sections for WeChat.
+- Ordered and unordered lists should also be flattened before draft creation; local HTML preview is not enough evidence that WeChat will preserve list semantics.
 - Code blocks should use simplified inline styles with `<pre><code>`.
 - External links inside the article body are not reliable delivery primitives.
   - In practice, WeChat may strip or neutralize `<a href>` in draft content.

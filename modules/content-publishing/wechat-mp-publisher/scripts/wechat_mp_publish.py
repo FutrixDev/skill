@@ -252,6 +252,7 @@ def sanitize_and_style_html(html: str) -> str:
                 parent["style"] = "margin:16px 0;text-align:center;"
 
     _linkify_labeled_plaintext_urls(soup)
+    _flatten_wechat_lists(soup)
     return str(soup)
 
 
@@ -284,6 +285,36 @@ def _linkify_labeled_plaintext_urls(soup: BeautifulSoup) -> None:
         link["style"] = STYLE_MAP["a"]
         link.string = url
         tag.append(link)
+
+
+def _flatten_wechat_lists(soup: BeautifulSoup) -> None:
+    list_tags = list(soup.find_all(["ol", "ul"]))
+    for list_tag in reversed(list_tags):
+        items = list_tag.find_all("li", recursive=False)
+        if not items:
+            list_tag.decompose()
+            continue
+
+        flattened: list[Tag] = []
+        start = 1
+        if list_tag.name == "ol":
+            try:
+                start = int(list_tag.get("start", 1))
+            except (TypeError, ValueError):
+                start = 1
+
+        for index, item in enumerate(items, start=start):
+            paragraph = soup.new_tag("p")
+            paragraph["style"] = "margin:10px 0;line-height:1.8;font-size:15px;color:#1f2937;"
+            prefix = f"{index}. " if list_tag.name == "ol" else "• "
+            paragraph.append(NavigableString(prefix))
+            for child in list(item.contents):
+                paragraph.append(child.extract())
+            flattened.append(paragraph)
+
+        for paragraph in reversed(flattened):
+            list_tag.insert_after(paragraph)
+        list_tag.decompose()
 
 
 class WeChatMpPublisher:

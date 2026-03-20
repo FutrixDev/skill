@@ -62,6 +62,23 @@ HN 讨论：https://news.ycombinator.com/item?id=123
         self.assertIn("原文：", sanitized)
         self.assertIn("HN 讨论：", sanitized)
 
+    def test_lists_are_flattened_to_paragraph_prefixes(self):
+        markdown = """1. 打开 x.com/search
+2. 等待页面加载
+
+- 不依赖 queryId
+- 不依赖 GraphQL 结构
+"""
+        html = MODULE.render_markdown_to_html(markdown)
+        sanitized = MODULE.sanitize_and_style_html(html)
+        self.assertIn("1. 打开 x.com/search", sanitized)
+        self.assertIn("2. 等待页面加载", sanitized)
+        self.assertIn("• 不依赖 queryId", sanitized)
+        self.assertIn("• 不依赖 GraphQL 结构", sanitized)
+        self.assertNotIn("<ol", sanitized)
+        self.assertNotIn("<ul", sanitized)
+        self.assertNotIn("<li", sanitized)
+
 
 class BodyImageRewriteTests(unittest.TestCase):
     def test_rewrite_body_images_replaces_src_and_adds_caption(self):
