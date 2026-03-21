@@ -43,10 +43,16 @@ Use this skill for the full WeChat article pipeline on this host: Jimeng image g
     "region": "cn-north-1",
     "service": "cv"
   },
-  "site_base_url": "https://www.dylanslife.com",
-  "blog_posts_dir": "/home/openclaw/blog/posts"
+  "site_base_url": "https://www.example.com",
+  "blog_posts_dir": "/abs/path/to/blog/posts"
 }
 ```
+
+You can override paths via environment variables:
+- `WECHAT_MP_CONFIG`
+- `WECHAT_MP_JIMENG_SCRIPT`
+- `WECHAT_MP_SITE_BASE_URL`
+- `WECHAT_MP_BLOG_POSTS_DIR`
 
 ## Non-Negotiables
 
