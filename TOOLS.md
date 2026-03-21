@@ -194,3 +194,5 @@ clawteam task create dev-swarm "做视频规划" -d "根据剧本形成视频生
 ---
 
 Add whatever helps you do your job. This is your cheat sheet.
+
+排版参考: `skills/wechat-mp-publisher/references/beautifier.md`
