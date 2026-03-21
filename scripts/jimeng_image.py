@@ -22,7 +22,7 @@ import sys
 import urllib.parse
 import urllib.request
 
-CONFIG_PATH = Path(__file__).parent / "config.json"
+CONFIG_PATH = Path(os.environ.get("WECHAT_MP_CONFIG", str(Path(__file__).resolve().parents[1] / "config.json")))
 API_HOST = "visual.volcengineapi.com"
 API_PATH = "/"
 API_VERSION = "2022-08-31"
