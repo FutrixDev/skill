@@ -22,18 +22,17 @@ from markdown import Markdown
 from PIL import Image
 
 MODULE_DIR = Path(__file__).resolve().parents[1]
-REPO_ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_CONFIG_PATH = Path(os.environ.get("WECHAT_MP_CONFIG", str(MODULE_DIR / "config.json")))
 DEFAULT_JIMENG_SCRIPT = Path(
     os.environ.get(
         "WECHAT_MP_JIMENG_SCRIPT",
-        str(REPO_ROOT / "image-generation/jimeng-volcengine/scripts/jimeng_image.py"),
+        str(MODULE_DIR / "scripts/jimeng_image.py"),
     )
 )
 DEFAULT_AUTHOR = "Dylan"
-DEFAULT_SITE_BASE_URL = os.environ.get("WECHAT_MP_SITE_BASE_URL", "https://www.example.com")
+DEFAULT_SITE_BASE_URL = os.environ.get("WECHAT_MP_SITE_BASE_URL", "https://www.dylanslife.com")
 DEFAULT_BLOG_POSTS_DIR = Path(
-    os.environ.get("WECHAT_MP_BLOG_POSTS_DIR", str(REPO_ROOT / "blog/posts"))
+    os.environ.get("WECHAT_MP_BLOG_POSTS_DIR", "/home/openclaw/blog/posts")
 ).expanduser()
 MAX_BODY_IMAGE_BYTES = 1024 * 1024
 ALLOWED_TAGS = {
