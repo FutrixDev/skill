@@ -56,7 +56,7 @@ python3 scripts/wechat_mp_publish.py --article 文章文件.md --jimeng-cover-pr
 - 封面图、正文配图、公众号发稿现在统一收口到 `wechat-mp-publisher`。
 - 图片脚本：`/home/openclaw/.openclaw/workspace/skills/wechat-mp-publisher/scripts/jimeng_image.py`
 - 发稿脚本：`/home/openclaw/.openclaw/workspace/skills/wechat-mp-publisher/scripts/wechat_mp_publish.py`
-- `skills/wechat-publisher/` 现在只保留兼容 shim，不再放真实实现。
+- `skills/wechat-publisher/` 已删除，不再保留第二份实现。
 - `阅读原文` 默认引流到 Dylan 的博客 canonical URL。
 - 如果文章文件位于 `/home/openclaw/blog/posts/*.md`，`wechat-mp-publisher` 会自动推导 `https://www.dylanslife.com/posts/<slug>.html`。
 - 如果是公众号专用摘要稿，例如 `HN Top 5`，调用时显式传 `--source-url https://www.dylanslife.com/posts/<对应博客文章>.html`。

@@ -134,7 +134,7 @@ On this host, any task that publishes to 微信公众号 must use the merged wor
 - Read `/home/openclaw/.openclaw/workspace/skills/wechat-mp-publisher/SKILL.md` before publishing.
 - Use `python3 /home/openclaw/.openclaw/workspace/skills/wechat-mp-publisher/scripts/wechat_mp_publish.py ...` for Markdown -> WeChat draft publishing.
 - Use `python3 /home/openclaw/.openclaw/workspace/skills/wechat-mp-publisher/scripts/jimeng_image.py ...` for Jimeng cover/body image generation when needed.
-- The old `skills/wechat-publisher/` directory is now only a compatibility shim; do not add logic there.
+- The old `skills/wechat-publisher/` directory has been removed after the merge; do not recreate or depend on it.
 - `阅读原文` must point to Dylan's canonical blog URL, not to raw external links.
 - If the article comes from `/home/openclaw/blog/posts/*.md`, let `wechat-mp-publisher` auto-derive `https://www.dylanslife.com/posts/<slug>.html`.
 - If the WeChat article is a derived summary (for example HN Top 5), pass `--source-url` explicitly and point it to the corresponding source blog post.

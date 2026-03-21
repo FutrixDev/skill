@@ -9,7 +9,7 @@
 - 公众号相关任务现在统一收口到 `wechat-mp-publisher` skill。
 - 图片脚本：`/home/openclaw/.openclaw/workspace/skills/wechat-mp-publisher/scripts/jimeng_image.py`
 - 发稿脚本：`/home/openclaw/.openclaw/workspace/skills/wechat-mp-publisher/scripts/wechat_mp_publish.py`
-- 不再维护第二份 `wechat-publisher` 实现；旧目录只保留兼容 shim。
+- 不再维护第二份 `wechat-publisher` 实现；旧目录已删除。
 - 除非 Dylan 明确指定其他模型或 provider，否则不要改用别的图片生成方式。
 - 公众号稿件的 `阅读原文` 统一引流到 Dylan 自己的博客 canonical URL：`https://www.dylanslife.com/posts/<slug>.html`。
 - 如果文章文件就在 `/home/openclaw/blog/posts/*.md`，优先让 `wechat-mp-publisher` 自动推导 `阅读原文`。
@@ -116,7 +116,7 @@
 
 ### Skill路径
 - **wechat-mp-publisher**: `/home/openclaw/.openclaw/workspace/skills/wechat-mp-publisher/` （唯一真实实现）
-- **wechat-publisher**: `/home/openclaw/.openclaw/workspace/skills/wechat-publisher/` （仅兼容 shim，无真实逻辑）
+- **wechat-publisher**: 已删除
 
 ### 关键规则
 1. **不要直接发原始Markdown** - 必须先转换为微信兼容HTML
