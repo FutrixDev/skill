@@ -53,8 +53,10 @@ python3 scripts/wechat_mp_publish.py --article 文章文件.md --jimeng-cover-pr
 
 ### 默认规则
 - 后续只要是发布微信公众号，默认使用 `wechat-mp-publisher` skill。
-- 纯图片生成仍然使用 `wechat-publisher/jimeng_image.py`。
-- 不要再用旧的 `wechat-publisher/publisher.py` 或 `publisher_enhanced.py` 做公众号发布，除非 Dylan 明确要求。
+- 封面图、正文配图、公众号发稿现在统一收口到 `wechat-mp-publisher`。
+- 图片脚本：`/home/openclaw/.openclaw/workspace/skills/wechat-mp-publisher/scripts/jimeng_image.py`
+- 发稿脚本：`/home/openclaw/.openclaw/workspace/skills/wechat-mp-publisher/scripts/wechat_mp_publish.py`
+- `skills/wechat-publisher/` 现在只保留兼容 shim，不再放真实实现。
 - `阅读原文` 默认引流到 Dylan 的博客 canonical URL。
 - 如果文章文件位于 `/home/openclaw/blog/posts/*.md`，`wechat-mp-publisher` 会自动推导 `https://www.dylanslife.com/posts/<slug>.html`。
 - 如果是公众号专用摘要稿，例如 `HN Top 5`，调用时显式传 `--source-url https://www.dylanslife.com/posts/<对应博客文章>.html`。
@@ -69,9 +71,8 @@ python3 scripts/wechat_mp_publish.py --article 文章文件.md --jimeng-cover-pr
 - **凭证文件**: config.json (已配置)
 
 ### 重要文档
-- **最佳实践**: `skills/wechat-publisher/WECHAT_PUBLISH_BEST_PRACTICES.md`
-- **快速参考**: `skills/wechat-publisher/QUICK_REFERENCE.md`
-- **经验备忘录**: `skills/wechat-publisher/经验备忘录.md`
+- **排版参考**: `skills/wechat-mp-publisher/references/beautifier.md`
+- **微信格式约束**: `skills/wechat-mp-publisher/references/wechat-formatting.md`
 
 ### 发布前检查清单
 - [ ] IP白名单已配置
