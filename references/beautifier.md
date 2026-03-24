@@ -140,6 +140,96 @@ def markdown_to_wechat_html(markdown_text):
 7. **加粗** → `<strong>` 保留
 8. **链接** → `<a href="...">` 保留
 
+## 表格处理方案
+
+微信公众号**支持 `<table>` HTML**，但有特定限制：
+
+### 微信支持的表格标签和属性
+
+根据微信开放社区官方文档，以下标签和属性可用：
+
+| 标签 | 支持的属性 |
+|------|----------|
+| `table` | `width` |
+| `td` | `colspan`, `height`, `rowspan`, `width` |
+| `th` | `colspan`, `height`, `rowspan`, `width` |
+| `tr` | `colspan`, `height`, `rowspan`, `width` |
+| `col` | `span`, `width` |
+| `colgroup` | `span`, `width` |
+
+### 表格渲染标准
+
+```html
+<!-- 基础表格（内联样式） -->
+<table width="100%" style="border-collapse:collapse;margin:16px 0;">
+  <thead>
+    <tr>
+      <th width="33%" style="padding:10px 12px;background:#0f766e;color:#fff;font-weight:700;text-align:left;border:1px solid #ddd;">
+        维度
+      </th>
+      <th width="33%" style="padding:10px 12px;background:#0f766e;color:#fff;font-weight:700;text-align:left;border:1px solid #ddd;">
+        ClawTeam
+      </th>
+      <th width="34%" style="padding:10px 12px;background:#0f766e;color:#fff;font-weight:700;text-align:left;border:1px solid #ddd;">
+        DeerFlow
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="padding:10px 12px;border:1px solid #ddd;color:#374151;font-size:15px;">
+        并行上限
+      </td>
+      <td style="padding:10px 12px;border:1px solid #ddd;color:#374151;font-size:15px;">
+        无限制
+      </td>
+      <td style="padding:10px 12px;border:1px solid #ddd;color:#374151;font-size:15px;">
+        3（硬编码）
+      </td>
+    </tr>
+    <tr style="background:#f9fafb;">
+      <td style="padding:10px 12px;border:1px solid #ddd;color:#374151;font-size:15px;">
+        Memory系统
+      </td>
+      <td style="padding:10px 12px;border:1px solid #ddd;color:#374151;font-size:15px;">
+        不实现
+      </td>
+      <td style="padding:10px 12px;border:1px solid #ddd;color:#374151;font-size:15px;">
+        JSONL
+      </td>
+    </tr>
+  </tbody>
+</table>
+```
+
+### 宽表格滚动处理
+
+对于列较多的宽表格，用外层 div 包裹并设置横向滚动：
+
+```html
+<div style="overflow-x:auto;max-width:100%;margin:16px 0;">
+  <table width="600" style="border-collapse:collapse;">
+    <!-- 表格内容 -->
+  </table>
+</div>
+```
+
+### 关键限制（必须遵守）
+
+1. **所有样式必须内联** — 不支持 `<style>` 标签
+2. **`class` 和 `id` 会被微信过滤** — 不要使用
+3. **`width` 用具体数值** — 不要用百分比（table 除外）
+4. **避免复杂的合并单元格** — `colspan`/`rowspan` 尽量少用
+5. **不要用 `overflow: hidden`** — 会被过滤
+
+### Markdown 转表格的展平规则
+
+如果 Markdown 里有表格，转换规则如下：
+- 简单表格（≤4列，内容不多）→ 直接生成 `<table>` HTML
+- 复杂表格（>4列，或内容很长）→ 展平为"维度 + 值"的列表格式
+
+---
+
 ## 质量检查清单
 
 - [ ] 所有CSS内联
@@ -152,3 +242,5 @@ def markdown_to_wechat_html(markdown_text):
 - [ ] 适当使用分隔线和留白
 - [ ] 底部有引导关注
 - [ ] 总字数控制在合理范围
+- [ ] 表格样式内联，无 class/id
+- [ ] 宽表格外层有 `overflow-x:auto`
