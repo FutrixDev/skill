@@ -1,0 +1,10 @@
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+content-publishing/wechat-mp-publisher/config.json
+content-publishing/wechat-mp-publisher/generated-images/
+content-publishing/wechat-mp-publisher/generated-cover/
+content-publishing/wechat-mp-publisher/generated-body/
+content-publishing/wechat-mp-publisher/generated-body-auto/
