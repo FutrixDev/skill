@@ -54,6 +54,12 @@ ALLOWED_TAGS = {
     "del",
     "a",
     "br",
+    "table",
+    "thead",
+    "tbody",
+    "tr",
+    "th",
+    "td",
 }
 STYLE_MAP = {
     "h1": "font-size:24px;line-height:1.45;font-weight:700;color:#111827;margin:0 0 18px 0;padding-bottom:10px;border-bottom:2px solid #0f766e;",
@@ -70,6 +76,12 @@ STYLE_MAP = {
     "hr": "border:none;border-top:1px solid #d1d5db;margin:22px 0;",
     "a": "color:#0f766e;text-decoration:underline;",
     "section": "margin:0;",
+    "table": "width:100%;border-collapse:collapse;margin:16px 0;font-size:14px;",
+    "thead": "",
+    "tbody": "",
+    "tr": "",
+    "th": "padding:10px 12px;background:#0f766e;color:#ffffff;font-weight:700;text-align:left;border:1px solid #d1d5db;font-size:13px;",
+    "td": "padding:9px 12px;border:1px solid #d1d5db;color:#374151;font-size:14px;",
 }
 LABELED_URL_RE = re.compile(r"^\s*(原文|HN\s*讨论)\s*[：:]\s*(https?://[^\s<]+)\s*$")
 
@@ -174,7 +186,6 @@ def parse_frontmatter_and_body(markdown_text: str) -> tuple[dict, str]:
 
 def extract_article_meta(markdown_text: str, article_path: Path, author_override: Optional[str], title_override: Optional[str], summary_override: Optional[str]) -> tuple[ArticleMeta, str]:
     frontmatter, body = parse_frontmatter_and_body(markdown_text)
-    body = collapse_markdown_tables(body)
     title = title_override or str(frontmatter.get("title") or "").strip() or _extract_first_heading(body) or article_path.stem
     author = author_override or str(frontmatter.get("author") or "").strip() or DEFAULT_AUTHOR
     summary = summary_override or str(frontmatter.get("summary") or frontmatter.get("description") or "").strip() or _summarize_body(body)
@@ -218,7 +229,7 @@ def _summarize_body(body: str, max_len: int = 120) -> str:
 
 
 def render_markdown_to_html(markdown_body: str) -> str:
-    md = Markdown(extensions=["fenced_code", "sane_lists", "nl2br"])
+    md = Markdown(extensions=["tables", "fenced_code", "sane_lists", "nl2br"])
     return md.convert(markdown_body)
 
 
@@ -228,9 +239,6 @@ def sanitize_and_style_html(html: str) -> str:
     for tag in list(soup.find_all(True)):
         if tag.name in {"script", "style", "iframe", "svg", "audio", "video", "canvas", "form", "input", "button", "textarea", "select"}:
             tag.decompose()
-            continue
-        if tag.name == "table":
-            tag.unwrap()
             continue
         if tag.name not in ALLOWED_TAGS:
             tag.unwrap()
@@ -396,26 +404,33 @@ class WeChatMpPublisher:
         return self.access_token
 
     def upload_cover_image(self, image_path: Path) -> str:
-        token = self.get_access_token()
         prepared = self.prepare_image_for_wechat(image_path, max_bytes=2 * 1024 * 1024)
-        try:
-            with prepared.open("rb") as fh:
-                response = self.session.post(
+        last_error: object | None = None
+        for attempt in range(1, 4):
+            token = self.get_access_token()
+            try:
+                with prepared.open("rb") as fh:
+                    response = self.session.post(
+                        f"https://api.weixin.qq.com/cgi-bin/material/add_material?access_token={token}&type=image",
+                        files={"media": fh},
+                        timeout=180,
+                    )
+                data = response.json()
+            except Exception:
+                data = self._upload_file_via_curl(
                     f"https://api.weixin.qq.com/cgi-bin/material/add_material?access_token={token}&type=image",
-                    files={"media": fh},
-                    timeout=180,
+                    prepared,
+                    max_time=240,
+                    retries=4,
                 )
-            data = response.json()
-        except Exception:
-            data = self._upload_file_via_curl(
-                f"https://api.weixin.qq.com/cgi-bin/material/add_material?access_token={token}&type=image",
-                prepared,
-                max_time=180,
-                retries=1,
-            )
-        if "media_id" not in data:
-            raise RuntimeError(f"封面上传失败: {data}")
-        return data["media_id"]
+            if "media_id" in data:
+                return data["media_id"]
+            last_error = data
+            if str(data.get("errcode")) == "40001":
+                self.access_token = None
+            if attempt < 3:
+                time.sleep(attempt)
+        raise RuntimeError(f"封面上传失败: {last_error}")
 
     def upload_body_image(self, image_path: Path) -> str:
         token = self.get_access_token()
@@ -517,21 +532,20 @@ class WeChatMpPublisher:
 
     def create_draft(self, meta: ArticleMeta, html_content: str, thumb_media_id: Optional[str]) -> str:
         token = self.get_access_token()
-        payload = {
-            "articles": [
-                {
+        article = {
                     "title": meta.title,
                     "author": meta.author,
                     "digest": meta.summary,
                     "content": html_content,
                     "content_source_url": meta.source_url or "",
-                    "thumb_media_id": thumb_media_id,
-                    "show_cover_pic": 1 if thumb_media_id else 0,
+                    "show_cover_pic": 0,
                     "need_open_comment": 0,
                     "only_fans_can_comment": 0,
                 }
-            ]
-        }
+        if thumb_media_id:
+            article["thumb_media_id"] = thumb_media_id
+            article["show_cover_pic"] = 1
+        payload = {"articles": [article]}
         response = self.session.post(
             f"https://api.weixin.qq.com/cgi-bin/draft/add?access_token={token}",
             data=json.dumps(payload, ensure_ascii=False).encode("utf-8"),

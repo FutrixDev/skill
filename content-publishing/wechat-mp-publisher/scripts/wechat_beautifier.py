@@ -123,6 +123,122 @@ def make_image(url, alt=''):
     return f'<img src="{url}" alt="{alt}" style="{wrap_style(styles)}" />\n'
 
 
+# ---------------------------------------------------------------------------
+# 表格处理
+# ---------------------------------------------------------------------------
+
+def _is_markdown_table(lines, start_idx):
+    """判断从 start_idx 开始的行是否是一个 Markdown 表格的开始。"""
+    if start_idx >= len(lines):
+        return False
+    line = lines[start_idx].strip()
+    if not line.startswith('|'):
+        return False
+    if start_idx + 1 >= len(lines):
+        return False
+    sep = lines[start_idx + 1].strip()
+    if not sep.startswith('|'):
+        return False
+    # 分隔行：每个单元格必须是 -: 或 :- 或 :-: 或只有 - 的组合
+    sep_clean = sep.strip().strip('|')
+    cells = [c.strip() for c in sep_clean.split('|')]
+    return all(re.match(r'[-:]+$', c) for c in cells)
+
+
+def _parse_markdown_table(lines, start_idx):
+    """解析从 start_idx 开始的 Markdown 表格，返回 (html_string, end_idx)。"""
+    rows_html = []
+
+    # 表头行
+    header_cells = [c.strip() for c in lines[start_idx].strip().strip('|').split('|')]
+    rows_html.append('<thead><tr>')
+    for cell in header_cells:
+        rows_html.append(
+            f'<th style="padding:10px 12px;background:{COLORS["primary"]};color:#fff;'
+            f'font-weight:700;text-align:left;border:1px solid {COLORS["border_light"]};'
+            f'font-size:14px;">{cell}</th>'
+        )
+    rows_html.append('</tr></thead>')
+
+    # 跳过分隔行
+    data_start = start_idx + 2
+    rows_html.append('<tbody>')
+
+    for i in range(data_start, len(lines)):
+        row_line = lines[i].strip()
+        if not row_line.startswith('|'):
+            break
+        cells = [c.strip() for c in row_line.strip('|').split('|')]
+        rows_html.append('<tr>')
+        for j, cell in enumerate(cells):
+            # 奇偶行交替底色
+            bg = '#f9fafb' if (i - data_start) % 2 == 1 else '#ffffff'
+            rows_html.append(
+                f'<td style="padding:10px 12px;border:1px solid {COLORS["border_light"]};'
+                f'color:{COLORS["text_normal"]};font-size:15px;background:{bg};">'
+                f'{cell}</td>'
+            )
+        rows_html.append('</tr>')
+        end_idx = i
+
+    rows_html.append('</tbody>')
+
+    table_html = (
+        f'<table width="100%" style="border-collapse:collapse;margin:16px 0;'
+        f'font-size:15px;">'
+        + ''.join(rows_html)
+        + '</table>'
+    )
+    return table_html, end_idx
+
+
+def make_table(lines, start_idx):
+    """将 Markdown 表格转换为 HTML 表格。
+
+    策略：
+    - 列数 ≤ 5 且内容不太长 → 生成真正的 <table> HTML
+    - 否则 → flatten 为 bullet list
+    """
+    # 收集所有行来确定表格大小
+    header = lines[start_idx].strip().strip('|').split('|')
+    num_cols = len(header)
+    col_count_is_simple = num_cols <= 5
+
+    # 检查内容长度
+    data_start = start_idx + 2
+    content_lengths = []
+    for i in range(data_start, len(lines)):
+        row_line = lines[i].strip()
+        if not row_line.startswith('|'):
+            break
+        cells = [c.strip() for c in row_line.strip('|').split('|')]
+        for cell in cells:
+            content_lengths.append(len(cell))
+    avg_len = sum(content_lengths) / max(len(content_lengths), 1)
+    content_is_short = avg_len <= 30
+
+    if col_count_is_simple and content_is_short:
+        # 简单表格 → 生成 HTML table
+        table_html, _ = _parse_markdown_table(lines, start_idx)
+        return table_html
+    else:
+        # 复杂表格 → flatten 为 bullet list
+        items = []
+        for i in range(data_start, len(lines)):
+            row_line = lines[i].strip()
+            if not row_line.startswith('|'):
+                break
+            cells = [c.strip() for c in row_line.strip('|').split('|')]
+            parts = []
+            for k, cell in enumerate(cells):
+                if k == 0:
+                    parts.append(f'<strong>{cell}</strong>')
+                else:
+                    parts.append(str(cell))
+            items.append('；'.join(parts))
+        return flatten_list(items)
+
+
 def make_card(title, content, emoji='💡'):
     """创建卡片框"""
     title_styles = {
@@ -175,12 +291,14 @@ def markdown_to_wechat_html(markdown_text):
     code_content = []
     in_list = False
     list_items = []
+    i = 0
 
-    for line in lines:
-        line = line.strip()
+    while i < len(lines):
+        line = lines[i].strip()
 
         # 跳过frontmatter
         if line.startswith('---'):
+            i += 1
             continue
 
         # 代码块
@@ -191,10 +309,12 @@ def markdown_to_wechat_html(markdown_text):
             else:
                 in_code_block = False
                 result.append(make_code_block(''.join(code_content)))
+            i += 1
             continue
 
         if in_code_block:
             code_content.append(line)
+            i += 1
             continue
 
         # 标题
@@ -212,6 +332,16 @@ def markdown_to_wechat_html(markdown_text):
             match = re.search(r'!\[([^\]]*)\]\(([^)]+)\)', line)
             if match:
                 result.append(make_image(match.group(2), match.group(1)))
+        # Markdown 表格
+        elif _is_markdown_table(lines, i):
+            table_html = make_table(lines, i)
+            result.append(table_html)
+            # 推进到表格最后一行之后
+            data_start = i + 2
+            while data_start < len(lines) and lines[data_start].strip().startswith('|'):
+                data_start += 1
+            i = data_start
+            continue
         # 无序列表
         elif line.startswith('- ') or line.startswith('* '):
             list_items.append(line[2:].strip())
@@ -230,6 +360,8 @@ def markdown_to_wechat_html(markdown_text):
                 result.append(make_p(convert_inline(line)))
             else:
                 result.append(make_p())
+
+        i += 1
 
     return ''.join(result)
 
