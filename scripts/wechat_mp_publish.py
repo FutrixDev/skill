@@ -532,21 +532,20 @@ class WeChatMpPublisher:
 
     def create_draft(self, meta: ArticleMeta, html_content: str, thumb_media_id: Optional[str]) -> str:
         token = self.get_access_token()
-        payload = {
-            "articles": [
-                {
+        article = {
                     "title": meta.title,
                     "author": meta.author,
                     "digest": meta.summary,
                     "content": html_content,
                     "content_source_url": meta.source_url or "",
-                    "thumb_media_id": thumb_media_id,
-                    "show_cover_pic": 1 if thumb_media_id else 0,
+                    "show_cover_pic": 0,
                     "need_open_comment": 0,
                     "only_fans_can_comment": 0,
                 }
-            ]
-        }
+        if thumb_media_id:
+            article["thumb_media_id"] = thumb_media_id
+            article["show_cover_pic"] = 1
+        payload = {"articles": [article]}
         response = self.session.post(
             f"https://api.weixin.qq.com/cgi-bin/draft/add?access_token={token}",
             data=json.dumps(payload, ensure_ascii=False).encode("utf-8"),
