@@ -1,7 +1,0 @@
-config.json
-generated-images/
-generated-cover/
-generated-body/
-generated-body-auto/
-__pycache__/
-*.pyc

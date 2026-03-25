@@ -1,5 +1,0 @@
-requests
-PyYAML
-beautifulsoup4
-Markdown
-Pillow
