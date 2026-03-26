@@ -1,0 +1,85 @@
+name: warm-magazine
+description: 温暖杂志风，适合观点长文、个人表达、故事化技术文章。
+palette:
+  primary: "#b45309"
+  primary_dark: "#92400e"
+  accent: "#d97706"
+  text: "#3f3f46"
+  heading: "#292524"
+  muted: "#78716c"
+  border: "#e7e5e4"
+  surface: "#fff7ed"
+  surface_alt: "#fffbeb"
+  code_bg: "#292524"
+  code_text: "#f5f5f4"
+layout:
+  radius: "14px"
+  body_font_size: "16px"
+  line_height: "1.9"
+callouts:
+  lead:
+    label: "这篇文章想说什么"
+    emoji: "🌤️"
+    background: "#fff7ed"
+    border_color: "#f59e0b"
+    title_color: "#b45309"
+  summary:
+    label: "先给结论"
+    emoji: "🍯"
+    background: "#fffbeb"
+    border_color: "#d97706"
+    title_color: "#92400e"
+  tip:
+    label: "值得记住"
+    emoji: "🌱"
+    background: "#fefce8"
+    border_color: "#ca8a04"
+    title_color: "#854d0e"
+  warning:
+    label: "别急着这么做"
+    emoji: "🔥"
+    background: "#fff7ed"
+    border_color: "#ea580c"
+    title_color: "#9a3412"
+  note:
+    label: "顺手补一句"
+    emoji: "☕"
+    background: "#fafaf9"
+    border_color: "#a8a29e"
+    title_color: "#57534e"
+  pitfall:
+    label: "容易踩空的地方"
+    emoji: "🍂"
+    background: "#fef2f2"
+    border_color: "#ef4444"
+    title_color: "#991b1b"
+  steps:
+    label: "推荐顺序"
+    emoji: "🪜"
+    background: "#fff7ed"
+    border_color: "#fb923c"
+    title_color: "#c2410c"
+  checklist:
+    label: "最后自查"
+    emoji: "🧾"
+    background: "#fefce8"
+    border_color: "#eab308"
+    title_color: "#a16207"
+  faq:
+    label: "常被问到"
+    emoji: "💬"
+    background: "#faf5ff"
+    border_color: "#c084fc"
+    title_color: "#7e22ce"
+  resources:
+    label: "延伸去看"
+    emoji: "📚"
+    background: "#fffbeb"
+    border_color: "#fbbf24"
+    title_color: "#b45309"
+  comparison:
+    label: "放在一起看"
+    emoji: "🪞"
+    background: "#fafaf9"
+    border_color: "#a8a29e"
+    title_color: "#57534e"

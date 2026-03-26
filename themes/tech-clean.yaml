@@ -1,0 +1,85 @@
+name: tech-clean
+description: 清爽科技风，适合技术教程、产品分析、Agent 工作流。
+palette:
+  primary: "#0f766e"
+  primary_dark: "#134e4a"
+  accent: "#14b8a6"
+  text: "#1f2937"
+  heading: "#0f172a"
+  muted: "#6b7280"
+  border: "#d1d5db"
+  surface: "#f0fdfa"
+  surface_alt: "#f8fafc"
+  code_bg: "#0f172a"
+  code_text: "#e2e8f0"
+layout:
+  radius: "10px"
+  body_font_size: "15px"
+  line_height: "1.8"
+callouts:
+  lead:
+    label: "先看重点"
+    emoji: "✨"
+    background: "#ecfeff"
+    border_color: "#14b8a6"
+    title_color: "#115e59"
+  summary:
+    label: "核心结论"
+    emoji: "📌"
+    background: "#f0fdfa"
+    border_color: "#0f766e"
+    title_color: "#134e4a"
+  tip:
+    label: "实操建议"
+    emoji: "💡"
+    background: "#f0fdf4"
+    border_color: "#16a34a"
+    title_color: "#166534"
+  warning:
+    label: "注意事项"
+    emoji: "⚠️"
+    background: "#fff7ed"
+    border_color: "#f97316"
+    title_color: "#9a3412"
+  note:
+    label: "补充说明"
+    emoji: "📝"
+    background: "#f8fafc"
+    border_color: "#94a3b8"
+    title_color: "#475569"
+  pitfall:
+    label: "常见坑"
+    emoji: "🕳️"
+    background: "#fef2f2"
+    border_color: "#ef4444"
+    title_color: "#991b1b"
+  steps:
+    label: "操作步骤"
+    emoji: "🧭"
+    background: "#eff6ff"
+    border_color: "#3b82f6"
+    title_color: "#1d4ed8"
+  checklist:
+    label: "检查清单"
+    emoji: "✅"
+    background: "#f0fdf4"
+    border_color: "#22c55e"
+    title_color: "#166534"
+  faq:
+    label: "常见问题"
+    emoji: "❓"
+    background: "#faf5ff"
+    border_color: "#a855f7"
+    title_color: "#7e22ce"
+  resources:
+    label: "延伸阅读"
+    emoji: "🔗"
+    background: "#eff6ff"
+    border_color: "#60a5fa"
+    title_color: "#1d4ed8"
+  comparison:
+    label: "方案对比"
+    emoji: "⚖️"
+    background: "#f8fafc"
+    border_color: "#64748b"
+    title_color: "#334155"

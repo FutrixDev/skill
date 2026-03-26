@@ -1,0 +1,85 @@
+name: tutorial-focus
+description: 教程导向风，突出步骤、命令、风险提示和结论。
+palette:
+  primary: "#7c3aed"
+  primary_dark: "#5b21b6"
+  accent: "#8b5cf6"
+  text: "#1f2937"
+  heading: "#111827"
+  muted: "#6b7280"
+  border: "#d8b4fe"
+  surface: "#faf5ff"
+  surface_alt: "#fdf4ff"
+  code_bg: "#1f1147"
+  code_text: "#ede9fe"
+layout:
+  radius: "12px"
+  body_font_size: "15px"
+  line_height: "1.82"
+callouts:
+  lead:
+    label: "你将得到什么"
+    emoji: "🎯"
+    background: "#faf5ff"
+    border_color: "#8b5cf6"
+    title_color: "#6d28d9"
+  summary:
+    label: "最短路径"
+    emoji: "🪄"
+    background: "#f5f3ff"
+    border_color: "#7c3aed"
+    title_color: "#5b21b6"
+  tip:
+    label: "实战技巧"
+    emoji: "🛠️"
+    background: "#f0fdf4"
+    border_color: "#22c55e"
+    title_color: "#166534"
+  warning:
+    label: "先避坑"
+    emoji: "🚧"
+    background: "#fff7ed"
+    border_color: "#f97316"
+    title_color: "#9a3412"
+  note:
+    label: "背景说明"
+    emoji: "📚"
+    background: "#f8fafc"
+    border_color: "#94a3b8"
+    title_color: "#475569"
+  pitfall:
+    label: "翻车现场"
+    emoji: "💥"
+    background: "#fef2f2"
+    border_color: "#ef4444"
+    title_color: "#991b1b"
+  steps:
+    label: "一步一步做"
+    emoji: "👣"
+    background: "#eef2ff"
+    border_color: "#6366f1"
+    title_color: "#4338ca"
+  checklist:
+    label: "发布前检查"
+    emoji: "📋"
+    background: "#f0fdf4"
+    border_color: "#22c55e"
+    title_color: "#166534"
+  faq:
+    label: "排错问答"
+    emoji: "🧩"
+    background: "#eff6ff"
+    border_color: "#3b82f6"
+    title_color: "#1d4ed8"
+  resources:
+    label: "命令与资料"
+    emoji: "🧪"
+    background: "#eef2ff"
+    border_color: "#818cf8"
+    title_color: "#4338ca"
+  comparison:
+    label: "方案选择"
+    emoji: "🧮"
+    background: "#f8fafc"
+    border_color: "#64748b"
+    title_color: "#334155"

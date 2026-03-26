@@ -63,6 +63,38 @@ HN 讨论：https://news.ycombinator.com/item?id=123
         self.assertIn("HN 讨论：", sanitized)
 
 
+class ThemeRenderTests(unittest.TestCase):
+    def test_lists_themes(self):
+        themes = MODULE.list_themes()
+        self.assertIn("tech-clean", themes)
+        self.assertIn("warm-magazine", themes)
+
+    def test_frontmatter_theme_is_respected(self):
+        markdown = """---
+title: Demo
+wechat:
+  theme: warm-magazine
+---
+
+# Demo
+
+Paragraph
+"""
+        self.assertEqual(MODULE.extract_requested_theme(markdown, None), "warm-magazine")
+
+    def test_directive_block_renders_component(self):
+        markdown = """# Demo
+
+::: tip
+先把配置跑通，再去追求花样主题。
+:::
+"""
+        html = MODULE.render_markdown_document(markdown, "tutorial-focus")
+        self.assertIn("实战技巧", html)
+        self.assertIn("先把配置跑通", html)
+        self.assertIn("border:1px solid", html)
+
+
 class BodyImageRewriteTests(unittest.TestCase):
     def test_rewrite_body_images_replaces_src_and_adds_caption(self):
         with tempfile.TemporaryDirectory() as tmpdir:

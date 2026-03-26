@@ -1,0 +1,85 @@
+name: news-brief
+description: 资讯简报风，适合 Top N、日报、周报、趋势速读。
+palette:
+  primary: "#1d4ed8"
+  primary_dark: "#1e3a8a"
+  accent: "#2563eb"
+  text: "#1f2937"
+  heading: "#111827"
+  muted: "#6b7280"
+  border: "#cbd5e1"
+  surface: "#eff6ff"
+  surface_alt: "#f8fafc"
+  code_bg: "#0f172a"
+  code_text: "#e2e8f0"
+layout:
+  radius: "8px"
+  body_font_size: "15px"
+  line_height: "1.75"
+callouts:
+  lead:
+    label: "今日重点"
+    emoji: "📰"
+    background: "#eff6ff"
+    border_color: "#2563eb"
+    title_color: "#1d4ed8"
+  summary:
+    label: "快速结论"
+    emoji: "📍"
+    background: "#eff6ff"
+    border_color: "#1d4ed8"
+    title_color: "#1e3a8a"
+  tip:
+    label: "值得关注"
+    emoji: "👀"
+    background: "#f0fdf4"
+    border_color: "#16a34a"
+    title_color: "#166534"
+  warning:
+    label: "风险提醒"
+    emoji: "🚨"
+    background: "#fef2f2"
+    border_color: "#ef4444"
+    title_color: "#991b1b"
+  note:
+    label: "补充信息"
+    emoji: "🗒️"
+    background: "#f8fafc"
+    border_color: "#94a3b8"
+    title_color: "#475569"
+  pitfall:
+    label: "误判点"
+    emoji: "🧨"
+    background: "#fff7ed"
+    border_color: "#f97316"
+    title_color: "#9a3412"
+  steps:
+    label: "行动顺序"
+    emoji: "🧭"
+    background: "#eef2ff"
+    border_color: "#6366f1"
+    title_color: "#4338ca"
+  checklist:
+    label: "编辑清单"
+    emoji: "☑️"
+    background: "#f0fdf4"
+    border_color: "#22c55e"
+    title_color: "#166534"
+  faq:
+    label: "读者会问"
+    emoji: "🙋"
+    background: "#faf5ff"
+    border_color: "#a855f7"
+    title_color: "#7e22ce"
+  resources:
+    label: "相关链接"
+    emoji: "🔎"
+    background: "#eff6ff"
+    border_color: "#60a5fa"
+    title_color: "#1d4ed8"
+  comparison:
+    label: "对比速览"
+    emoji: "📊"
+    background: "#f8fafc"
+    border_color: "#64748b"
+    title_color: "#334155"

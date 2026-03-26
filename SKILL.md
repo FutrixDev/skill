@@ -16,11 +16,15 @@ Use this skill for the full WeChat article pipeline on this host: Jimeng image g
 - Formatting references:
   - `references/wechat-formatting.md`
   - `references/beautifier.md`
+  - `references/component-syntax.md`
+- Theme presets: `themes/*.yaml`
 
 ## Choose the Path
 
 - If the user wants a WeChat draft from Markdown, run `scripts/wechat_mp_publish.py`.
 - If the user wants a WeChat-friendly HTML preview without publishing, run `scripts/wechat_beautifier.py` or use `--dry-run --html-out`.
+- If the user wants different visual styles, choose a theme via frontmatter `wechat.theme` or CLI `--theme`.
+- If the user wants richer chapter blocks (lead, tip, warning, steps, faq, resources, comparison), read `references/component-syntax.md` and render with the built-in directive syntax.
 - If the user wants a cover image or body illustrations for the article, run `scripts/jimeng_image.py`.
 - If the final goal is a WeChat draft, image generation is only a sub-step; finish by returning to `scripts/wechat_mp_publish.py`.
 - If the Markdown already contains `![alt](...)` images, keep them and let the publisher upload them through WeChat `media/uploadimg`.
@@ -107,7 +111,7 @@ Quick rules:
 
 ```bash
 cd /home/openclaw/.openclaw/workspace/skills/wechat-mp-publisher
-python3 scripts/wechat_mp_publish.py   --article /abs/path/article.md   --author Dylan
+python3 scripts/wechat_mp_publish.py   --article /abs/path/article.md   --author Dylan   --theme tech-clean
 ```
 
 ### Publish with Jimeng cover
@@ -125,7 +129,7 @@ python3 scripts/jimeng_image.py   --prompt "现代科技资讯插画，蓝青主
 ### Preview beautiful HTML without publishing
 
 ```bash
-python3 scripts/wechat_beautifier.py article.md output.html
+python3 scripts/wechat_beautifier.py article.md output.html tutorial-focus
 ```
 
 ### Debug rendered HTML without publishing
