@@ -5,3 +5,9 @@ generated-body/
 generated-body-auto/
 __pycache__/
 *.pyc
+
+# keep only published theme preview HTMLs in repo
+articles/*.md
+articles/images/
+!articles/theme-previews/
+!articles/theme-previews/**
