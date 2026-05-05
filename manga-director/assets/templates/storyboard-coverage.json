@@ -1,0 +1,20 @@
+{
+  "source_ledger": "storyboard/source-detail-ledger.json",
+  "storyboard_file": "storyboard/page-plan.json",
+  "coverage": [
+    {
+      "detail_id": "detail_001",
+      "status": "covered",
+      "page": 1,
+      "panel": 1,
+      "adaptation_note": ""
+    }
+  ],
+  "omissions": [
+    {
+      "detail_id": "",
+      "reason": "",
+      "replacement": ""
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "style_name": "full-color Japanese manga",
+  "line_art": "clean expressive manga line art",
+  "rendering": "anime-style cel shading with controlled soft gradients",
+  "palette": {
+    "global": [],
+    "accent": []
+  },
+  "page_treatment": "finished color manga page with readable panel borders",
+  "generation_method": "GPT Image2 raster image generation, not SVG/HTML/CSS/canvas",
+  "speech_bubbles": "GPT Image2 renders final speech bubbles, exact dialogue, narration boxes, and sound effects natively inside the artwork; Hanzi, digits, English letters, capitalization, spacing, and punctuation must be preserved exactly",
+  "narration_boxes": "integrated style-matched manga narration boxes, not plain white rectangular labels",
+  "paneling": "dynamic Japanese manga page composition with varied panel sizes, anchor panels, close-up inserts, expressive gutters, irregular frames, diagonal cuts, overlapping panels, and expressive border-breaking by characters or important props",
+  "avoid": [
+    "random or unplanned text",
+    "dialogue assigned to the wrong speaker",
+    "speech bubble tail pointing to the wrong character",
+    "ambiguous speaker attribution",
+    "incorrect Hanzi",
+    "incorrect digits",
+    "incorrect English letters",
+    "changed punctuation",
+    "blank speech bubbles unless explicitly requested",
+    "post-lettering placeholder space",
+    "plain white rectangular narration cards",
+    "simple equal-height stacked strip layout",
+    "rigid all-rectangular panel grid",
+    "overly straight mechanical panel borders when drama calls for expressive framing",
+    "watermarks",
+    "character redesign",
+    "inconsistent lighting between connected pages"
+  ]
+}

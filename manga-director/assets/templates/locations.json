@@ -1,0 +1,15 @@
+{
+  "locations": [
+    {
+      "id": "location_001",
+      "name": "",
+      "description": "",
+      "layout_notes": "",
+      "time_of_day": "",
+      "light_source": "",
+      "color_temperature": "",
+      "recurring_props": [],
+      "reference_images": []
+    }
+  ]
+}

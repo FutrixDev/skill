@@ -1,0 +1,16 @@
+{
+  "title": "",
+  "logline": "",
+  "genre": "",
+  "target_reader": "teen and older",
+  "page_count": 6,
+  "reading_flow": {
+    "page_progression": "top-to-bottom",
+    "row_direction": "right-to-left"
+  },
+  "story_beats": [],
+  "ending": "",
+  "dialogue_density": "medium",
+  "lettering_mode": "gpt-image2-native",
+  "content_boundaries": []
+}

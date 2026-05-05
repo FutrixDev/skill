@@ -1,0 +1,39 @@
+{
+  "project_schema_version": "1.0.0",
+  "skill_name": "manga-director",
+  "skill_version": "1.6.4",
+  "created_at": "",
+  "status": "draft",
+  "output": {
+    "type": "numbered standalone raster image pages",
+    "folder": "pages",
+    "page_pattern": "page_001.png",
+    "default_extension": ".png"
+  },
+  "generation": {
+    "engine": "GPT Image2 / Codex built-in image generation",
+    "character_reference_mode": "generate-stage-specific-character-reference-images-before-pages",
+    "lettering_mode": "gpt-image2-native",
+    "post_lettering_allowed": false,
+    "code_drawn_final_art_allowed": false
+  },
+  "quality_control": {
+    "rubric_version": "1.0.0",
+    "storyboard_fidelity_rubric_version": "1.0.0",
+    "minimum_passing_score": 80,
+    "require_source_detail_ledger": true,
+    "require_storyboard_coverage": true,
+    "require_series_plan_for_large_stories": true,
+    "require_character_stage_references": true,
+    "require_ordered_lettering_script": true,
+    "require_exact_character_text": true,
+    "require_speaker_attribution": true,
+    "require_character_acting": true,
+    "require_prompt_preview_before_image_generation": true,
+    "require_previous_page_reference_after_page_1": true,
+    "require_integrated_lettering": true,
+    "require_dynamic_paneling": true,
+    "require_visual_review_after_generation": true
+  },
+  "pages": []
+}

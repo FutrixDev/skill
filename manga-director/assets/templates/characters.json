@@ -1,0 +1,51 @@
+{
+  "characters": [
+    {
+      "id": "main",
+      "name": "",
+      "role": "protagonist",
+      "age": "",
+      "face": "",
+      "hair": "",
+      "eyes": "",
+      "body": "",
+      "default_outfit": {
+        "description": "",
+        "fixed_colors": []
+      },
+      "stages": [
+        {
+          "id": "main_default",
+          "label": "default stage",
+          "age_range": "",
+          "story_phase": "",
+          "situation": "",
+          "appearance_overrides": {
+            "face": "",
+            "hair": "",
+            "eyes": "",
+            "body": "",
+            "scars_or_injuries": ""
+          },
+          "outfit": {
+            "description": "",
+            "fixed_colors": []
+          },
+          "emotional_baseline": "",
+          "recurring_props": [],
+          "reference_images": []
+        }
+      ],
+      "personality": "",
+      "signature_expressions": [],
+      "recurring_props": [],
+      "do_not_change": [
+        "face structure",
+        "hairstyle",
+        "eye color",
+        "default outfit colors"
+      ],
+      "reference_images": []
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "story_title": "",
+  "source_files": [],
+  "adaptation_goal": "",
+  "large_story_mode": "auto",
+  "whole_story_understanding": {
+    "premise": "",
+    "central_conflict": "",
+    "core_themes": [],
+    "emotional_spine": "",
+    "ending_state": "",
+    "reader_promises": []
+  },
+  "global_continuity": {
+    "timeline": [],
+    "recurring_locations": [],
+    "recurring_objects": [],
+    "political_or_world_rules": [],
+    "unresolved_threads": []
+  },
+  "chapter_plan": [
+    {
+      "chapter_id": "ch01",
+      "title": "",
+      "source_scope": "",
+      "story_function": "",
+      "main_beats": [],
+      "must_preserve_details": [],
+      "character_stage_requirements": [
+        {
+          "character_id": "main",
+          "stage_id": "main_default",
+          "reason": ""
+        }
+      ],
+      "continuity_in": [],
+      "continuity_out": [],
+      "estimated_pages": 8,
+      "notes": ""
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "source_title": "",
+  "source_file": "",
+  "adaptation_scope": "",
+  "target_page_count": 8,
+  "detail_levels": {
+    "A": "must appear on page or panel; cannot be deleted silently",
+    "B": "should appear or be merged with an explicit reason",
+    "C": "optional texture; use when page count allows"
+  },
+  "details": [
+    {
+      "id": "detail_001",
+      "level": "A",
+      "category": "main_event",
+      "source_location": "",
+      "source_summary": "",
+      "why_it_matters": "",
+      "required_visual_evidence": [],
+      "required_text": [],
+      "allowed_merge": "",
+      "status": "unmapped"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Manga Director"
+  short_description: "Turn stories into continuous full-color manga pages"
+  default_prompt: "Use $manga-director to turn my long story into numbered full-color Japanese manga pages with whole-story chapter planning, source detail ledgers, stage-specific GPT Image2 character reference sheets, prompt preview before each generated image, panel-level character acting notes, ordered dialogue and narration scripts, native lettering, speaker-attributed bubbles, exact Hanzi/digit/English text handling, continuity references, border-breaking paneling, and quality scoring."
+policy:
+  allow_implicit_invocation: true

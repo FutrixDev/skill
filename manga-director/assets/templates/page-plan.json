@@ -1,0 +1,58 @@
+{
+  "pages": [
+    {
+      "page": 1,
+      "beat": "",
+      "scene": "",
+      "mood": "",
+      "panel_count": 4,
+      "layout": "top-to-bottom, rows right-to-left",
+      "layout_style": "dynamic manga page composition with irregular frames, diagonal cuts, and border-breaking art, not simple stacked strips",
+      "paneling_notes": "Use varied panel sizes, one anchor panel, close-up inserts, dramatic gutters, and purposeful character or prop breakouts while keeping reading order clear.",
+      "visual_references": {
+        "must_reference": [],
+        "callback_reference": []
+      },
+      "character_stages": {
+        "main": "main_default"
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "type": "establishing",
+          "shot": "wide",
+          "description": "",
+          "characters": [],
+          "character_stages": {},
+          "acting": {
+            "main": {
+              "expression": "",
+              "eyes": "",
+              "mouth": "",
+              "brows": "",
+              "body_language": "",
+              "emotion_intensity": "",
+              "notes": ""
+            }
+          },
+          "dialogue": "",
+          "lettering": [
+            {
+              "order": 1,
+              "type": "background_narration",
+              "speaker": "",
+              "text": "",
+              "placement": "integrated narration box",
+              "tail_to": "",
+              "priority": "required",
+              "speaker_position": "",
+              "notes": ""
+            }
+          ],
+          "source_detail_ids": [],
+          "continuity_notes": ""
+        }
+      ]
+    }
+  ]
+}
