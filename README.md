@@ -9,7 +9,6 @@ This repository collects reusable Codex skills maintained by FutrixDev.
 
 ## License
 
-This repository is licensed for non-commercial use only under the PolyForm Noncommercial License 1.0.0. See [LICENSE.md](LICENSE.md).
+This repository is licensed under the [Apache License 2.0](LICENSE).
 
-Commercial use is not permitted without prior written permission from the author.
-
+Copyright 2026 Dylan Wang and FutrixDev contributors. See [NOTICE](NOTICE) for attribution information.

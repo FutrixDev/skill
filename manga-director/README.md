@@ -142,4 +142,4 @@ Current skill version: `1.6.4`.
 
 ## License
 
-This skill is licensed for non-commercial use only under the repository license. Commercial use requires prior written permission from the author.
+This skill is licensed under the repository's [Apache License 2.0](../LICENSE).
